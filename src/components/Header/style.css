@@ -1,0 +1,20 @@
+.header{
+  max-width: 1200px;
+  padding: 0 20px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.menu ul {
+  font-family:'Roboto', sans-serif;
+  display: flex;
+  gap: .9375rem;
+}
+
+.menu ul li:hover {
+  cursor: pointer;
+  text-decoration: underline;
+  text-underline-offset: 6px;
+}
