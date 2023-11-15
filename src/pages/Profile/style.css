@@ -1,0 +1,152 @@
+.profile-container {
+  height: 100vh;
+  background: var(--gray-100);
+
+  margin: 0 auto;
+
+  display: grid;
+  grid-template-columns: 250px 1fr;
+  grid-template-areas: "sidebar main-content";
+  gap: 1.25rem;
+
+}
+
+.main-content {
+  grid-area: main-content;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-right: 1.25rem;
+}
+
+.profile-content {
+  height: 100%;
+  width: 100%;
+  margin: 1.875rem 0;
+  background: var(--white-200);
+  border-radius: 10px;
+  padding: 20px;
+  /* display: flex; */
+}
+
+.form-profile {
+  width: 500px;
+  display: flex;
+  flex-direction: column;
+  margin: 25px;
+  gap: 20px;
+}
+
+.profile-info {
+  display: flex;
+  flex-direction: column;
+  gap: .9375rem;
+}
+
+.profile-info input[type=text],
+.profile-info input[type=email] {
+  flex: 1;
+  width: 100%;
+  background: var(--gray-100);
+  border-radius: 8px;
+  border: 0;
+  padding: 1rem 1.5rem;
+  font-size: 1rem;
+  color: #6C6C80;
+
+}
+
+.profile-info label {
+  font-size: .875rem;
+  margin-bottom: 8px;
+  color: #6C6C80;
+
+}
+
+.label-avatar {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  cursor: pointer;
+}
+
+.label-avatar img {
+  width: 12.5rem;
+  height: 12.5rem;
+}
+
+.label-avatar input {
+  display: none;
+}
+
+.label-avatar span {
+  z-index: 99;
+  position: absolute;
+  opacity: 0.7;
+  transition: all 0.5s;
+}
+
+.label-avatar span:hover {
+  opacity: 1;
+  transform: scale(1.4);
+}
+
+
+.form-profile img {
+  margin-bottom: 1rem;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.form-profile input:disabled {
+  cursor: not-allowed;
+}
+
+.profile-footer{
+  display: flex;
+  align-items: center;
+  width: 100%;
+  border-radius: 10px;
+  background: var(--white-200);
+  padding: .9375rem;
+  margin-bottom: 3rem;
+}
+.profile-footer button {
+  border: 1px solid var(--red-400);
+  color: var(--blue-800);
+  background-color: transparent;
+  font-weight: normal;
+  padding: .625rem 1rem;
+}
+
+.profile-footer button:hover {
+  background-color: var(--red-400);
+  color: var(--white-200);
+
+}
+
+
+@media screen and (max-width: 700px) {
+  .profile-container {
+
+    grid-template-columns: auto;
+    grid-template-areas:
+      "sidebar"
+      "main-content";
+  }
+
+  .main-content {
+    padding: 0 1.25rem;
+  }
+}
+
+@media screen and (max-width: 520px) {
+  .profile-container {
+    gap: 5px;
+  }
+  
+  .form-profile {
+    width: auto;
+  }
+}
