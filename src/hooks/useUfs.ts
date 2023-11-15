@@ -8,7 +8,9 @@ function useUfs() {
 
   useEffect(() => {
     axios.get<IBGEUFResponse[]>('https://servicodados.ibge.gov.br/api/v1/localidades/estados').then(response => {
-      const ufInitials = response.data.map(uf => uf.sigla);
+
+      const ufInitials = response.data.map(uf => uf.sigla)
+      ufInitials.sort();
       setUfs(ufInitials);
     });
   }, []);
