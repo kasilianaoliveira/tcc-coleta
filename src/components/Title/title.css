@@ -1,0 +1,25 @@
+.title {
+  display: flex;
+  width: 100%;
+  flex-direction: row;
+  align-items: center;
+  border-radius: 10px;
+  background: var(--white-200);
+  padding: .9375rem;
+  margin-top: 3rem;
+}
+
+.title span {
+  margin-left: 0.8rem;
+  font-weight: bold;
+  font-size: 1.25rem;
+}
+
+
+@media screen and (max-width: 700px) {
+  .title {
+    margin-top: 1rem;
+  }
+  
+  
+}
