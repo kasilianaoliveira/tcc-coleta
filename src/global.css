@@ -1,13 +1,15 @@
 :root{
   --white: #FFFFFF;
+  --white-200: #FEFEFE;
   --black: #000000;
   --green-300: #DCEDE0;
   --green-500: #34CB79;
   --green-700:#35B16E;
   --blue-800: #322153;
+  --gray-100: #F0F0F5;
   --gray-400: #6C6C80;
   --red-400:#FF4242;
-
+  
 }
 
 * {
@@ -34,7 +36,6 @@ button {
 
 button {
   cursor: pointer;
-  height: 3.125rem;
   border: 0;
 
 }
@@ -57,4 +58,16 @@ ul {
   html {
     font-size: 87.5%; 
   }
+}
+
+
+.back-home-button{
+  background: var(--white);
+  border-radius: 20px;
+  padding: 12px 20px;
+  transition: background-color 0.8s;
+}
+
+.back-home-button:hover{
+  background: #F0F0F5;
 }
