@@ -1,13 +1,14 @@
-import ReciclynImg from "../../assets/reciclagem.svg";
+import RecyclingImg from "../../assets/reciclagem.svg";
 import Background from "../../assets/Background-01.svg";
 import { BiSearch } from "react-icons/bi";
 import './style.css'
 import { CustomButton } from "../../components/CustomButton";
 import { Header } from "../../components/Header";
+import { Link } from "react-router-dom";
 export const Home = () => {
   return (
     <>
-    <Header isHome/>
+      <Header isHome />
       <div className="container">
         <div className="contentText">
           <h1>
@@ -17,18 +18,20 @@ export const Home = () => {
             Plataforma online para coleta inteligente e sustentável de resíduos.
           </p>
 
-          <CustomButton>
-            <BiSearch />
-            Pesquise um ponto de coleta
-          </CustomButton>
-
+          <Link to="/pontos-de-coleta">
+            <CustomButton>
+              <BiSearch />
+              Pesquise um ponto de coleta
+            </CustomButton>
+          </Link>
 
         </div>
         <div>
-          <img src={ReciclynImg} alt="" />
+          <img src={RecyclingImg} alt="" className="home-recycling"/>
         </div>
 
-        <img src={Background} className="background" />
-      </div></>
+        <img src={Background} className="home-background" />
+      </div>
+    </>
   )
 }
