@@ -10,17 +10,23 @@ interface HeaderProps {
 }
 
 
-export const Header = ({ children, isHome=false }: HeaderProps) => {
+export const Header = ({ children, isHome = false }: HeaderProps) => {
   return (
     <header className='header'>
+      <Link to='/'>
       <img src={Logo} alt="" />
+      </Link>
 
       <nav className='menu'>
         {isHome && <ul>
           <li>
             <Link to='/cadastro'>
-            Cadastro
-
+              Cadastro
+            </Link>
+          </li>
+          <li>
+            <Link to='/login'>
+              Login
             </Link>
           </li>
           <li>
