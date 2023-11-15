@@ -1,0 +1,109 @@
+.container-login {
+  max-width: 1200px;
+  width: 100%;
+  padding: 0 1.25rem;
+  margin: 0 auto;
+  height: calc(100vh - 71px);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.875rem;
+}
+
+.form-login {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  flex: 1;
+  gap: 1.875rem;
+}
+
+.form-login button {
+  width: 100%;
+}
+
+.form-login form {
+  /* width: 100%; */
+  /* background-color: aqua; */
+  display: flex;
+  gap: 2.1875rem;
+  flex-direction: column;
+}
+
+.fields-login input[type=password],
+.fields-login input[type=email] {
+  flex: 1;
+  width: 100%;
+  background: var(--white);
+  border-radius: 8px;
+  border: 0;
+  padding: 16px 24px;
+  font-size: 1rem;
+  color: #6C6C80;
+
+}
+
+.fields-login {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.text-login {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.field-login label {
+  font-size: .875rem;
+  margin-bottom: 8px;
+  color: #6C6C80;
+}
+
+.field-login {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.login-background{
+  position: absolute;
+  z-index: -1;
+  bottom: 0;
+  right: 0;
+}
+
+@media screen and (max-width: 850px) {
+  .container-login {
+    margin-top: 30px;
+    height: calc(100vh - 71px);
+    flex-direction: column;
+    gap: 20px;
+
+  }
+  .fields-login input[type=password],
+  .fields-login input[type=email] {
+    padding: 10px 25px;
+    font-size: .875rem;
+  }
+  
+
+  .login-recycling {
+    width: 300px;
+  }
+
+  .form-login form {
+    gap: 30px;
+  }
+
+  .container-login button{
+    font-size: .875rem;
+    padding: 10px 25px;
+  }
+
+  .text-login{
+    font-size:.875rem;
+  }
+  
+}
