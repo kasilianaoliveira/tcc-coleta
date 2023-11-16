@@ -5,7 +5,7 @@ import { CustomButton } from "../../components/CustomButton";
 import ReciclynImg from "../../assets/reciclagem.svg";
 import "./styles.css";
 import { AuthContext } from "../../contexts/AuthContext";
-import { FormEvent, useContext } from "react";
+import { FormEvent, useContext, useEffect } from "react";
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { ToastContainer, toast } from 'react-toastify';
@@ -21,7 +21,14 @@ interface SignIn {
 export const Login = () => {
 const navigate = useNavigate();
 
-  const { signIn } = useContext(AuthContext);
+  const { signIn, user } = useContext(AuthContext);
+
+
+  useEffect(() =>{
+    if(user){
+      navigate('/dashboard');
+    }
+  },[user])
 
   const schemaValidation = yup.object().shape({
 
@@ -43,14 +50,14 @@ const navigate = useNavigate();
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm<SignIn>({ resolver, mode: 'onBlur' });
+  } = useForm({ resolver, mode: 'onBlur' });
 
 
   async function onSubmit(data: SignIn) {
     try {
 
       await signIn(data)
-      navigate('/dashboard')
+      navigate('/perfil')
 
     } catch (error) {
 
