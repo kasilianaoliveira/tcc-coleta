@@ -269,7 +269,10 @@ export const SearchPoints = () => {
             </div>) :
             isClickOnPoint && (
               <div className="card-point-info">
-                <img src={selectedPointServer.image} alt="" />
+                {
+                  selectedPointServer.image !== 'http://localhost:3333/uploads/null' ?     <img src={selectedPointServer.image} alt="" /> :    <img src={PerfilGoogleImg} alt="" />
+                }
+             
                 <div>
                   <h1>{selectedPointServer.name}</h1>
                   <h4 className='card-description'>
