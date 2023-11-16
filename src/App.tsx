@@ -1,20 +1,19 @@
-import { BrowserRouter,Routes,Route } from "react-router-dom"
-import { CreatePoint } from "./pages/CreatePoint"
-import { Home } from "./pages/Home"
-import { SearchPoints } from "./pages/SearchPoint"
+import { BrowserRouter } from "react-router-dom"
+import { AuthProvider } from "./contexts/AuthContext"
+import RouterApp from "./Router/router"
+import { PointProvider } from "./contexts/PointContext"
 
 
 function App() {
 
   return (
-    <BrowserRouter>
-    <Routes>
-      <Route path="/" element={<Home />} />
-      <Route path="/cadastro" element={<CreatePoint />} />
-      <Route path="/pesquisar/pontos-de-coleta" element={<SearchPoints />} />
-
-    </Routes>
-  </BrowserRouter>
+    <AuthProvider>
+      <PointProvider>
+        <BrowserRouter>
+          <RouterApp />
+        </BrowserRouter>
+      </PointProvider>
+    </AuthProvider>
 
   )
 }

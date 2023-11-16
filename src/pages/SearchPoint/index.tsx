@@ -288,7 +288,7 @@ export const SearchPoints = () => {
             </div>) :
             isClickOnPoint && (
               <div className="card-point-info">
-                <img src={PerfilImg} alt="" />
+                <img src={selectedPointServer.image} alt="" />
                 <div>
                   <h1>{selectedPointServer.name}</h1>
                   <h4 className='card-description'>
