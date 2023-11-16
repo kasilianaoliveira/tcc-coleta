@@ -1,7 +1,7 @@
 import { FormEvent, useContext, useEffect, useState } from 'react';
 import { useJsApiLoader } from '@react-google-maps/api';
 import { ToastContainer, toast } from 'react-toastify';
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import * as yup from "yup";
 import "react-toastify/dist/ReactToastify.css";
 import { api } from '../../services/apiClient';

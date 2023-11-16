@@ -7,13 +7,10 @@ interface PrivateProps {
   children: ReactNode;
 }
 export function Private({ children }: PrivateProps) {
-  const { isAuthenticated, loading } = useContext(AuthContext);
+  const { isAuthenticated } = useContext(AuthContext);
   const navigate = useNavigate();
   const token = Cookies.get('auth.token');
 
-  if(loading){
-    <div>carregando...</div>
-  }
 
   useEffect(() => {
     if (!token) {
