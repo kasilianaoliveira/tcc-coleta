@@ -2,7 +2,6 @@ import { createContext, FC, ReactNode, useEffect, useState } from "react";
 import { AuthContextData, SignInProps, UpdateUser, UserProps } from "./contextType";
 import { api } from "../services/apiClient";
 import Cookies from 'js-cookie';
-import { Point } from "../types/types";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { jwtDecode } from "jwt-decode";
@@ -34,25 +33,17 @@ export const AuthProvider: FC<AuthProviderProps> = ({ children }) => {
 
   const [user, setUser] = useState<UserProps | null>(null);
   const [loading, setLoading] = useState(true);
-  const [points, setPoints] = useState<Point[]>([])
   const isAuthenticated = user !== null && !!user;
 
   useEffect(() => {
     const token = Cookies.get('auth.token');
-    if (token) {
-      const decoded: UserProps & { sub: string } = jwtDecode(token);
 
-      const { name, email, role, sub: id } = decoded;
-      const data = {
-        id,
-        name,
-        email,
-        role,
-        token
-      }
-      setUser(data)
-      api.defaults.headers.authorization = `Bearer ${token}`;
+    if (token) {
+      api.get('me').then((response) => {
+        setUser(response.data);
+      })
     }
+
   }, [])
 
   const cookieUser = (data: UserProps) => {
@@ -73,10 +64,13 @@ export const AuthProvider: FC<AuthProviderProps> = ({ children }) => {
         path: '/'
       })
 
-      setUser({ name, id, email, role, token })
-      api.defaults.headers['Authorization'] = `Bearer ${token}`
+      const tokenResponse = Cookies.get('auth.token');
+      if (tokenResponse) {
 
+        setUser({ name, id, email, role, token })
+        api.defaults.headers['Authorization'] = `Bearer ${token}`
 
+      }
     } catch (error) {
       console.log('Erro ao acessar o site', error)
     }
@@ -118,12 +112,11 @@ export const AuthProvider: FC<AuthProviderProps> = ({ children }) => {
 
   async function updateUser({ id, name, email }: UpdateUser) {
     try {
-      console.log({ id, name, email })
-
       if (user?.id === id) {
 
-        await api.put(`/user/${id}`, { name, email });
-
+        const response = await api.put(`/user/${id}`, { name, email });
+        const data = response.data
+        setUser(data.update)
         toast.success('Dado(s) atualizados com sucesso!', {
           position: "bottom-right",
           autoClose: 3000,
