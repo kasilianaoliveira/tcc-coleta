@@ -27,6 +27,7 @@ export const Profile = () => {
     name: '',
     email: '',
   });;
+  const [isActive, setIsActive] = useState(false);
 
   useEffect(() => {
     if (user) {
@@ -37,7 +38,7 @@ export const Profile = () => {
     }
   }, [user]);
 
-  const handleUpdateUser = (e: FormEvent) => {
+  const handleUpdateUser = async (e: FormEvent) => {
     e.preventDefault();
 
     if (user) {
@@ -45,7 +46,8 @@ export const Profile = () => {
       const name = infoUser.name;
       const email = infoUser.email;
 
-      updateUser({ id, name, email })
+      await updateUser({ id, name, email });
+      setIsActive(false);
     }
 
   }
@@ -60,20 +62,20 @@ export const Profile = () => {
     <div className='profile-container'>
       <Sidebar />
       <div className='main-content'>
-        <Title name='Meu perfil' >
+        <Title name='Meu perfil' title='Editar minhas informações' setIsActive={setIsActive}>
+
           <AiFillSetting size={24} />
+
         </Title>
 
         <div className='profile-content'>
 
           <form className="form-profile">
-
-
             <div className='profile-info'>
               <div>
                 <label>Nome</label>
                 <input type="text" value={infoUser.name} onChange={(e) =>
-                  setInfoUser({ ...infoUser, name: e.target.value })} />
+                  setInfoUser({ ...infoUser, name: e.target.value })} disabled={!isActive} />
               </div>
 
               <div>
@@ -81,13 +83,14 @@ export const Profile = () => {
                 <input
                   type="email"
                   value={infoUser.email}
+                  disabled={!isActive}
                   onChange={(e) =>
                     setInfoUser({ ...infoUser, email: e.target.value })}
                 />
               </div>
             </div>
 
-            <CustomButton type="submit" onClick={handleUpdateUser}>Salvar</CustomButton>
+            <CustomButton type="submit" disabled={!isActive} onClick={handleUpdateUser}>Salvar</CustomButton>
           </form>
 
         </div>

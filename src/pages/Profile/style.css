@@ -56,6 +56,12 @@
 
 }
 
+.profile-info input[type=text]:disabled,
+.profile-info input[type=email]:disabled{
+  background:var(--gray-200);
+  cursor: default;
+}
+
 .profile-info label {
   font-size: .875rem;
   margin-bottom: 8px;
