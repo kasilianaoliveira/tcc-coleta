@@ -3,26 +3,17 @@ import { AiFillSetting } from 'react-icons/ai'
 import Sidebar from '../../components/Sidebar';
 import Title from '../../components/Title';
 import './style.css'
-import { FiUpload } from 'react-icons/fi';
-import avatarImg from '../../assets/avatar.png'
 import { CustomButton } from '../../components/CustomButton';
 import { FormEvent, useContext, useEffect, useState } from 'react';
 import { AuthContext } from '../../contexts/AuthContext';
-import { ToastContainer, toast } from 'react-toastify';
+import { ToastContainer } from 'react-toastify';
 
-interface HTMLInputEvent extends FormEvent {
-  target: HTMLInputElement & EventTarget;
-}
+
 
 export const Profile = () => {
 
-  const { user, cookieUser, setUser, deleteUser, updateUser } = useContext(AuthContext);
+  const { user,  deleteUser, updateUser } = useContext(AuthContext);
 
-
-  interface User {
-    name: string;
-    email: string;
-  }
   const [infoUser, setInfoUser] = useState({
     name: '',
     email: '',

@@ -4,7 +4,6 @@ import Title from '../../components/Title';
 import { FiUpload } from 'react-icons/fi';
 import avatarImg from '../../assets/avatar.png'
 import { FormEvent, useContext, useEffect, useState } from 'react';
-import { AuthContext } from '../../contexts/AuthContext';
 import { ToastContainer } from 'react-toastify';
 
 import { IoMdHome } from "react-icons/io";

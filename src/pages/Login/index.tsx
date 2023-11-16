@@ -5,10 +5,9 @@ import { CustomButton } from "../../components/CustomButton";
 import ReciclynImg from "../../assets/reciclagem.svg";
 import "./styles.css";
 import { AuthContext } from "../../contexts/AuthContext";
-import { FormEvent, useContext, useEffect } from "react";
+import {  useContext, useEffect } from "react";
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
-import { ToastContainer, toast } from 'react-toastify';
 import * as yup from "yup";
 import "react-toastify/dist/ReactToastify.css";
 

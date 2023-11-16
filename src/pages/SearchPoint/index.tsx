@@ -8,14 +8,13 @@ import { AiOutlineMail } from 'react-icons/ai'
 import { BsWhatsapp } from 'react-icons/bs';
 
 import "./style.css"
-import { GoogleMap, InfoWindow, Marker, MarkerClusterer, useJsApiLoader } from '@react-google-maps/api';
+import { GoogleMap, Marker, useJsApiLoader } from '@react-google-maps/api';
 import { constants } from '../../utils/constants';
-import PerfilImg from "../../assets/Image.png"
 import PerfilGoogleImg from "../../assets/sustentabilidade.jpg"
 
 import { api } from '../../services/apiClient';
-import { Point, PointItem } from './types';
-import { Neighborhood, NeighborhoodsLocation } from '../../types/types';
+import { Point } from './types';
+import { Neighborhood } from '../../types/types';
 
 
 interface DataResponse {
@@ -153,25 +152,7 @@ export const SearchPoints = () => {
     setIsClickOnPoint(true);
   };
 
-  const [neighborhoodsWithOffset, setNeighborhoodsWithOffset] = useState<NeighborhoodsLocation[]>([]);
 
-  // function getRandomOffset() {
-  //   return (Math.random() - 0.5) / 150;
-  // }
-
-
-  function getRandomOffset() {
-
-    return (Math.random() - 0.5) / 150;
-  }
-
-
-  // const marker = new window.google.maps.Marker({
-  //   position: { lat: latitude, lng: longitude }, // Substitua com suas coordenadas
-  //   map: map, // Substitua com a referência ao seu mapa
-  //   icon: customIcon, // Use o ícone personalizado aqui
-  //   title: 'Título do Marcador', // Substitua com o título desejado
-  // });
   return (
     <div className='search-container'>
       <Header />

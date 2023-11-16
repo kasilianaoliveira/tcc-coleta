@@ -1,8 +1,8 @@
-import { useContext, useEffect, useState } from 'react'
+import { useContext, useEffect } from 'react'
 import avatarImg from '../../assets/avatar.png'
 import { Link, useNavigate } from 'react-router-dom'
 
-import { FiHome, FiUser, FiSettings } from 'react-icons/fi'
+import { FiHome,  FiSettings } from 'react-icons/fi'
 import './style.css';
 import { AuthContext } from '../../contexts/AuthContext';
 import { CustomButton } from '../CustomButton';
@@ -11,7 +11,7 @@ import { jwtDecode } from 'jwt-decode';
 import Cookies from 'js-cookie';
 
 export default function Sidebar() {
-  const { logout, user } = useContext(AuthContext);
+  const { logout } = useContext(AuthContext);
   const { pointList,getPoint } = useContext(PointContext);
   const navigate = useNavigate();
 

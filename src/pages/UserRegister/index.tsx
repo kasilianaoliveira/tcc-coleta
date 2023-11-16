@@ -11,14 +11,7 @@ import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { api } from '../../services/apiClient';
 
-interface IRegisterUser {
-  name: string;
-  email: string;
-  password: string;
-  passwordConfirmation: string;
-  role: string;
 
-}
 interface User {
   name: string;
   email: string;
@@ -55,7 +48,7 @@ export const UserRegister = () => {
     handleSubmit,
     resetField,
     formState: { errors },
-  } = useForm<IRegisterUser>({ resolver, mode: 'onBlur' });
+  } = useForm({ resolver, mode: 'onBlur' });
 
 
  async function onSubmit (data: User) {

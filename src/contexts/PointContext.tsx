@@ -1,11 +1,10 @@
 import { createContext, FC, ReactNode, useEffect, useState } from "react";
-import { PointContextData, UpdatePoint } from "./contextType";
+import { PointContextData } from "./contextType";
 import { api } from "../services/apiClient";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import axios, { AxiosError } from "axios";
+import { AxiosError } from "axios";
 import { IPoint } from "../types/types";
-import { jwtDecode } from "jwt-decode";
 
 
 interface PointProviderProps {

@@ -4,9 +4,8 @@ import { api } from "../services/apiClient";
 import Cookies from 'js-cookie';
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { jwtDecode } from "jwt-decode";
 import { useNavigate } from "react-router-dom";
-import axios, { AxiosError } from "axios";
+import  { AxiosError } from "axios";
 
 
 interface AuthProviderProps {
@@ -32,7 +31,6 @@ export function signOut() {
 export const AuthProvider: FC<AuthProviderProps> = ({ children }) => {
 
   const [user, setUser] = useState<UserProps | null>(null);
-  const [loading, setLoading] = useState(true);
   const isAuthenticated = user !== null && !!user;
 
   useEffect(() => {
@@ -138,60 +136,18 @@ export const AuthProvider: FC<AuthProviderProps> = ({ children }) => {
     }
   }
 
-  // async function createPoint(data: Point) {
-  //   try {
-
-  //     const response = await api.get('/points');
-  //     setPoints(response.data)
-  //     setLoading(true);
-
-  //     points.map(async point => {
-
-  //       if (point.email === data.email) {
-
-  //         toast.error('E-mail já cadastrado no sistema, tente outro')
-  //       }
-
-  //       await api.post('/point', data);
-
-  //       toast.success('Cadastro concluido com sucesso, acesse Meu painel e acesse suas informações.', {
-  //         position: "bottom-right",
-  //         autoClose: 3000,
-  //         theme: "light",
-  //       });
-
-  //       setLoading(false);
-  //     })
-
-  //   } catch (err: unknown) {
-
-  //     if (err instanceof AxiosError) {
-  //       const error = err.response?.data.error
-  //       if (error === 'Error: Email already exists') {
-  //         toast.error('Email já existente, tente outro!');
-  //       }else if (error === 'Error: User already has a point registered'){
-  //         toast.error('Vocë já tem um ponto cadastrado!');
-  //       }
-  //     } else {
-  //       toast.error('Erro ao cadastrar dados, tente novamente mais tarde');
-  //     }
-  //   }
-  // }
-
 
   return (
     <AuthContext.Provider value={{
       user,
       setUser,
       signIn,
-      // createPoint,
       signOut,
       logout,
       updateUser,
       deleteUser,
       cookieUser,
-      isAuthenticated,
-      loading
+      isAuthenticated
     }}>
       {children}
     </AuthContext.Provider>

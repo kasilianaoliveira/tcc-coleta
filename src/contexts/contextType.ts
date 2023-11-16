@@ -55,7 +55,6 @@ export interface UpdatePoint {
 export interface AuthContextData {
   user: UserProps | null ;
   isAuthenticated: boolean;
-  loading: boolean;
   signIn: (credentials: SignInProps) => Promise<void>;
   signOut: () => void;
   logout(): Promise<void>;

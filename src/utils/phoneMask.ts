@@ -5,3 +5,5 @@ export const phoneMask = (value:string) => {
   value = value.replace(/(\d)(\d{4})$/,"$1-$2")
   return value
 }
+
+export const phoneNumberRegex = /^\(\d{2}\) \d{5}-\d{4}|\(\d{2}\) \d{4}-\d{4}$/;

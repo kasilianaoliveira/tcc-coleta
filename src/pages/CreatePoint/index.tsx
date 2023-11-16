@@ -39,7 +39,6 @@ interface Day {
 
 export const CreatePoint = () => {
 
-  const navigate = useNavigate();
 
   const [step, setStep] = useState(1);
   const [neighborhoods, setNeighborhoods] = useState<Neighborhood[]>([]);
@@ -80,7 +79,6 @@ export const CreatePoint = () => {
     handleSubmit,
     watch,
     formState: { errors },
-    resetField
   } = useForm({ resolver: yupResolver(schemaValidation), mode: 'onBlur' });
 
   const selectedCity = watch("city");
@@ -219,11 +217,11 @@ export const CreatePoint = () => {
   }
 
   const hasStep1Errors = () => {
-    return errors.namePoint || errors.whatsapp;
+    return errors.name || errors.whatsapp || errors.email;
   };
 
   const hasStep2Errors = () => {
-    return errors.uf || errors.city || errors.neighborhood || errors.frequency;
+    return errors.uf || errors.city || errors.neighborhood
   };
 
   const toastError = () => {
