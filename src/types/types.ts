@@ -22,22 +22,26 @@ export interface PointOfCollection {
   neighborhoods?: Neighborhood[];
 }
 
-
-
-interface Item {
+export interface Item {
+  id: string;
   title: string;
+  image: string;
 }
 
-export interface PointItem {
-  item: Item;
-}
 export interface Neighborhood {
   name: string;
   latitude: number;
   longitude: number;
   daysOfWeek: string[];
 }
-export interface Point {
+interface PointItem {
+  item: {
+    id: string;
+    image_url: string;
+    title: string;
+  };
+}
+export interface IPoint {
   id:string;
   name: string;
   image: string;
@@ -47,7 +51,7 @@ export interface Point {
   uf: string;
   userId:string;
   neighborhoods: Neighborhood[];
-  items: string[];
+  pointItems: PointItem[]
 }
 
 

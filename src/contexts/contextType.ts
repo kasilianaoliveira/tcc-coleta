@@ -1,35 +1,31 @@
-// import { Point } from "../types/types";
+import { IPoint } from "../types/types";
 
-import { Point } from "../types/types";
 
-// export interface PointContextData {
-//   name: string;
-//   image: string | null;
-//   email: string | null;
-//   whatsapp: string;
-//   latitude: number;
-//   longitude: number;
-//   city: string;
-//   uf: string;
-//   pointItems: PointItems[];
-//   neighborhoods: Neighborhood[];
-//   userId: string;
+export interface Item {
+  id: string;
+  title: string;
+  image: string;
+}
 
-// }
+export interface Neighborhood {
+  name: string;
+  latitude: number;
+  longitude: number;
+  daysOfWeek: string[];
+}
+export interface Point {
+  id:string;
+  name: string;
+  image: string;
+  email: string;
+  whatsapp: string;
+  city: string;
+  uf: string;
+  userId:string;
+  neighborhoods: Neighborhood[];
+  pointItems: Item[];
+}
 
-// interface Neighborhood {
-//   name: string;
-//   frequency?: string | null;
-//   latitude: number;
-//   longitude: number;
-//   daysOfWeek: string;
-//   pointId: string;
-// }
-
-// export interface PointItems {
-//   point_id: string;
-//   item_id: string;
-// }
 
 export interface UserContextData {
   name: string;
@@ -43,6 +39,15 @@ export interface UpdateUser {
   name: string;
   email: string;
   password?: string;
+}
+export interface UpdatePoint {
+  id: string;
+  name: string;
+  email: string;
+  uf: string;
+  city: string;
+  image:string;
+  whatsapp: string;
 }
 
 
@@ -75,11 +80,12 @@ export interface SignInProps {
 }
 
 export interface PointContextData {
-  point: Point | null;
   loading: boolean;
-  pointList: Point | null;
+  pointList: IPoint | null;
   pointNotFound: boolean;
-  createPoint: (data: Point) => Promise<void>;
+  createPoint(data: FormData): Promise<void>;
+  deletePoint(id: string): Promise<void>;
   getPoint(id: string): Promise<void>;
+  updatePoint(data: FormData, id: string): Promise<void>;
 
 }
