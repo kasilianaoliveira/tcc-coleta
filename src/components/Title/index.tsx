@@ -1,15 +1,25 @@
-import { ReactNode } from 'react';
+import { ReactNode, useState } from 'react';
 import './title.css';
+import { CustomButton } from '../CustomButton';
 
 interface TitleProps {
   name: string;
-  children: ReactNode
+  title:string;
+  children: ReactNode;
+  setIsActive?: (value: React.SetStateAction<boolean>) => void;
 }
-export default function Title({ children, name }: TitleProps){
-  return(
+export default function Title({ children, name, title, setIsActive}: TitleProps){
+
+
+  return (
     <div className="title">
-      {children}
-      <span>{name}</span>
+      <div>
+        {children}
+        <span>{name}</span>
+      </div>
+      <CustomButton onClick={() => setIsActive(true)}>
+        {title}
+      </CustomButton>
     </div>
   )
 }
