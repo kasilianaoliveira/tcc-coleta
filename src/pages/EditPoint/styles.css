@@ -1,0 +1,245 @@
+.point-container-loading{
+  height: 100vh;
+  /* background: var(--gray-100); */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.point-container {
+  background: var(--gray-100);
+
+  margin: 0 auto;
+
+  display: grid;
+  grid-template-columns: 250px 1fr;
+  grid-template-areas: "sidebar main-content-point";
+  gap: 1.25rem;
+
+}
+
+.main-content-point {
+  grid-area: main-content-point;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-right: 1.25rem;
+}
+
+.point-content {
+  height: 100%;
+  width: 100%;
+  margin: 1.875rem 0;
+  background: var(--white-200);
+  border-radius: 10px;
+  padding: 20px;
+}
+
+.point-card-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.point-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 18.75rem;
+  height: 12.5rem;
+  border-radius: 10px;
+  background: var(--gray-100);
+  padding: 1.25rem;
+}
+
+
+.point-card:hover {
+  background: #e5e5e7;
+  cursor: pointer;
+}
+
+.form-point {
+  display: flex;
+  flex-direction: column;
+  margin: 25px;
+  gap: 20px;
+}
+
+.point-info {
+  display: flex;
+  flex-direction: column;
+  gap: .9375rem;
+}
+
+.point-info input[type=text],
+.point-info input[type=email],
+.point-info select {
+  flex: 1;
+  width: 100%;
+  background: var(--gray-100);
+  border-radius: 8px;
+  border: 0;
+  padding: 1rem 1.5rem;
+  font-size: 1rem;
+  color: #6C6C80;
+
+}
+
+.point-info input[type=text]:disabled,
+.point-info input[type=email]:disabled,
+.point-info select:disabled {
+  background: var(--gray-200);
+  cursor: default;
+}
+
+.point-info label {
+  font-size: .875rem;
+  margin-bottom: 8px;
+  color: #6C6C80;
+
+}
+
+.label-avatar {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  cursor: pointer;
+}
+
+.label-avatar img {
+  width: 12.5rem;
+  height: 12.5rem;
+  border-radius: 50%;
+
+}
+
+.label-avatar input {
+  display: none;
+}
+
+.label-avatar span {
+  z-index: 99;
+  position: absolute;
+  opacity: 0.7;
+  transition: all 0.5s;
+}
+
+.label-avatar span:hover {
+  opacity: 1;
+  transform: scale(1.4);
+}
+
+.form-point {
+  width: 500px;
+  display: flex;
+  flex-direction: column;
+  margin: 25px;
+  gap: 20px;
+}
+
+.form-point img {
+  margin-bottom: 1rem;
+  object-fit: cover;
+}
+
+.form-point input:disabled {
+  cursor: not-allowed;
+}
+
+.point-footer {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  border-radius: 10px;
+  background: var(--white-200);
+  padding: .9375rem;
+  margin-bottom: 3rem;
+}
+
+.point-footer button {
+  border: 1px solid var(--red-400);
+  color: var(--blue-800);
+  background-color: transparent;
+  font-weight: normal;
+  padding: .625rem 1rem;
+}
+
+.point-footer button:hover {
+  background-color: var(--red-400);
+  color: var(--white-200);
+
+}
+
+.items-grid-edit {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+  list-style: none;
+  margin-bottom: 50px;
+}
+
+.items-grid-edit li {
+  background: #f5f5f5;
+  border: 2px solid #f5f5f5;
+  border-radius: 8px;
+  padding: 32px 24px 16px;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+
+  text-align: center;
+
+  cursor: pointer;
+}
+
+.items-grid-edit li span {
+  flex: 1;
+  margin-top: 12px;
+
+  display: flex;
+  align-items: center;
+  color: var(--title-color)
+}
+
+.items-grid-edit li.selected {
+  background: #E1FAEC;
+  border: 2px solid #34CB79;
+}
+
+.items-image-edit {
+  width: 120px;
+  height: 120px;
+  object-fit: cover;
+  border-radius: 8px;
+}
+
+@media screen and (max-width: 700px) {
+  .point-container {
+
+    grid-template-columns: auto;
+    grid-template-areas:
+      "sidebar"
+      "main-content-point";
+  }
+
+  .point-card-list {
+    justify-content: center;
+  }
+
+  .main-content-point {
+    padding: 0 1.25rem;
+  }
+}
+
+@media screen and (max-width: 520px) {
+  .point-container {
+    gap: 5px;
+  }
+
+  .form-point {
+    width: auto;
+  }
+}
