@@ -1,7 +1,7 @@
 import { FormEvent, useContext, useEffect, useState } from 'react';
 import { useJsApiLoader } from '@react-google-maps/api';
 import { ToastContainer, toast } from 'react-toastify';
-import { Link } from "react-router-dom";
+import { Link, Navigate, useNavigate } from "react-router-dom";
 import * as yup from "yup";
 import "react-toastify/dist/ReactToastify.css";
 import { api } from '../../services/apiClient';
@@ -71,6 +71,7 @@ export const CreatePoint = () => {
     city: yup.string().required('Cidade é um campo obrigatório'),
     neighborhood: yup.object().shape({
       name: yup.string().required('Nome do bairro é um campo obrigatório'),
+      street: yup.string().required('Rua do endereço é um campo obrigatório'),
     }),
   })
 
@@ -83,17 +84,19 @@ export const CreatePoint = () => {
 
   const selectedCity = watch("city");
   const selectedNeighborhood = watch("neighborhood.name");
-
+  const selectedStreet = watch("neighborhood.street");
   const ufs = useUfs();
   const cities = useCities(selectedUF);
 
 
+  const navigate = useNavigate();
   const [daySelected, setDaySelected] = useState(false);
   const [neighborhoodSelected, setNeighborhoodSelected] = useState(false);
   const handleUFClick = (uf: string) => {
     uf === selectedUF ? setSelectedUF('') : setSelectedUF(uf);
   };
 
+  console.log(user.role)
   const handleSelectDay = (id: string) => {
     if (!selectedCity) {
       toast.error('Selecione um Estado e Cidade antes de escolher os dias da semana.', {
@@ -159,6 +162,7 @@ export const CreatePoint = () => {
               name: selectedNeighborhood,
               latitude: lat + scale,
               longitude: lng + scale,
+              street: selectedStreet,
               daysOfWeek: selectedDaysForNeighborhood
             };
 
@@ -271,12 +275,15 @@ export const CreatePoint = () => {
         point.append('image', selectedFile)
       }
 
-      console.log(point)
-      await createPoint(point)
+      await createPoint(point);
+
+      setTimeout(() =>{
+        navigate('/perfil');
+      },3000)
 
     } catch (error) {
       console.log(error)
-    } 
+    }
   };
 
   return (
@@ -391,14 +398,28 @@ export const CreatePoint = () => {
 
                 <fieldset>
                   <header role="legend">
-                    <h2>Bairros de coleta</h2>
+                    <h2>Bairro(s) de coleta</h2>
                     <span>Selecione um ou mais bairros de coleta</span>
 
                   </header>
 
                   <div className="field-group">
                     <div className="field-neighborhood">
+                      {
+                        user.role === 'COLLECTION_COMPANY' && (
+                          <div className="field">
+                            <label htmlFor="street">Endereço</label>
+                            <input
+                              type="text"
+                              placeholder="Digite o nome da rua e o número da sua empresa"
+                              {...register("neighborhood.street")}
+                              disabled={selectedCity === '0'}
+                            />
+                          </div>
+                        )
+                      }
                       <div className='field-group-neighborhood'>
+
                         <div className='group-neighborhood'>
                           <div className="field">
                             <label htmlFor="neighborhood">Bairro</label>
@@ -425,12 +446,14 @@ export const CreatePoint = () => {
                           </div>
                         </div>
 
-                        <CustomButton onClick={addNeighborhood} disabled={!daySelected}>
-                          Adicionar bairro
-                        </CustomButton>
+
 
                       </div>
+                      <CustomButton onClick={addNeighborhood} disabled={!daySelected}>
+                        Adicionar bairro
+                      </CustomButton>
 
+                      
                       {
                         neighborhoods && (
                           <ul>
@@ -445,6 +468,8 @@ export const CreatePoint = () => {
                                     </strong>
 
                                     <p> Dias da semana: {neighborhood.daysOfWeek.join(', ')}</p>
+                                    <p>  Rua: {neighborhood.street}</p>
+
                                     <BiSolidTrashAlt size={25} className="remove-task-button"
                                       onClick={() => handleRemoveNeighborhood(neighborhood.name)} />
                                   </div>

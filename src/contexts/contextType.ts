@@ -86,5 +86,5 @@ export interface PointContextData {
   deletePoint(id: string): Promise<void>;
   getPoint(id: string): Promise<void>;
   updatePoint(data: FormData, id: string): Promise<void>;
-
+  reLoaded: boolean;
 }

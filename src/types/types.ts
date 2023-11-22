@@ -32,6 +32,7 @@ export interface Neighborhood {
   name: string;
   latitude: number;
   longitude: number;
+  street?: string;
   daysOfWeek: string[];
 }
 interface PointItem {

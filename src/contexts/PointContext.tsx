@@ -22,7 +22,7 @@ export const PointProvider: FC<PointProviderProps> = ({ children }) => {
   const [pointNotFound, setPointNotFound] = useState(false);
 
   const [loading, setLoading] = useState(false);
-
+  const [reLoaded, setReloaded] = useState(false);
   const [isDeleted, setIsDeleted] = useState(false);
 
 
@@ -33,18 +33,17 @@ export const PointProvider: FC<PointProviderProps> = ({ children }) => {
 
   async function createPoint(data: FormData) {
     try {
-      console.log('entrou')
       await api.post('/point', data);
       toast.success('Cadastro concluido com sucesso, acesse Meu painel e acesse suas informações.', {
         position: "bottom-right",
         autoClose: 3000,
         theme: "light",
       });
-
+      setReloaded(true);
       setLoading(false);
 
     } catch (err: unknown) {
-      console.log(err)
+      setReloaded(false);
       if (err instanceof AxiosError) {
         console.log(err)
 
@@ -89,6 +88,7 @@ export const PointProvider: FC<PointProviderProps> = ({ children }) => {
       if (pointList?.id === id) {
         await api.delete(`/point/${id}`);
         setIsDeleted(true)
+        setLoading(false);
         toast.success('Ponto de coleta excluido com sucesso!');
 
       }
@@ -115,6 +115,8 @@ export const PointProvider: FC<PointProviderProps> = ({ children }) => {
           theme: "light",
         });
 
+      setLoading(true);
+
       }
 
     } catch (err: unknown) {
@@ -132,6 +134,7 @@ export const PointProvider: FC<PointProviderProps> = ({ children }) => {
   return (
     <PointContext.Provider value={{
       getPoint,
+      reLoaded,
       pointList,
       createPoint,
       deletePoint,
