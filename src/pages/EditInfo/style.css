@@ -1,0 +1,219 @@
+.neighborhood-container-loading {
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.neighborhood-container {
+  background: var(--gray-100);
+  height: 100vh;
+  margin: 0 auto;
+
+  display: grid;
+  grid-template-columns: 250px 1fr;
+  grid-template-areas: "sidebar main-content-neighborhood";
+  gap: 1.25rem;
+
+}
+
+.main-content-neighborhood {
+  grid-area: main-content-neighborhood;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-right: 1.25rem;
+}
+
+.neighborhood-content {
+  height: 100%;
+  width: 100%;
+  margin: 1.875rem 0;
+  background: var(--white-200);
+  border-radius: 10px;
+  padding: 20px;
+}
+
+.neighborhood-card-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.neighborhood-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 18.75rem;
+  height: 12.5rem;
+  border-radius: 10px;
+  background: var(--gray-100);
+  padding: 1.25rem;
+}
+
+
+.neighborhood-card:hover {
+  background: #e5e5e7;
+  cursor: neighborhooder;
+}
+
+.card-neighborhood{
+
+  margin-top: 1.25rem;
+  padding: 1.25rem;
+
+  background: var(--gray-100);
+
+  display: flex;
+  flex-direction: column;
+  height: 100px;
+  /* width: 21.875rem; */
+  border-radius: 10px;
+}
+
+.card-neighborhood-buttons{
+  display: flex;
+  gap: .5rem;
+}
+.form-neighborhood {
+  display: flex;
+  flex-direction: column;
+  margin: 25px;
+  gap: 20px;
+}
+
+.neighborhood-info {
+  display: flex;
+  flex-direction: column;
+  gap: .9375rem;
+}
+
+.neighborhood-info input[type=text],
+.neighborhood-info input[type=email],
+.neighborhood-info select {
+  flex: 1;
+  width: 100%;
+  background: var(--gray-100);
+  border-radius: 8px;
+  border: 0;
+  padding: 1rem 1.5rem;
+  font-size: 1rem;
+  color: #6C6C80;
+
+}
+
+.neighborhood-info input[type=text]:disabled,
+.neighborhood-info input[type=email]:disabled,
+.neighborhood-info select:disabled {
+  background: var(--gray-200);
+  cursor: default;
+}
+
+.neighborhood-info label {
+  font-size: .875rem;
+  margin-bottom: 8px;
+  color: #6C6C80;
+
+}
+
+.label-avatar {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  cursor: neighborhooder;
+}
+
+.label-avatar img {
+  width: 12.5rem;
+  height: 12.5rem;
+  border-radius: 50%;
+
+}
+
+.label-avatar input {
+  display: none;
+}
+
+.label-avatar span {
+  z-index: 99;
+  position: absolute;
+  opacity: 0.7;
+  transition: all 0.5s;
+}
+
+.label-avatar span:hover {
+  opacity: 1;
+  transform: scale(1.4);
+}
+
+.form-neighborhood {
+  width: 500px;
+  display: flex;
+  flex-direction: column;
+  margin: 25px;
+  gap: 20px;
+}
+
+.form-neighborhood img {
+  margin-bottom: 1rem;
+  object-fit: cover;
+}
+
+.form-neighborhood input:disabled {
+  cursor: not-allowed;
+}
+
+.neighborhood-footer {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  border-radius: 10px;
+  background: var(--white-200);
+  padding: .9375rem;
+  margin-bottom: 3rem;
+}
+
+.neighborhood-footer button {
+  border: 1px solid var(--red-400);
+  color: var(--blue-800);
+  background-color: transparent;
+  font-weight: normal;
+  padding: .625rem 1rem;
+}
+
+.neighborhood-footer button:hover {
+  background-color: var(--red-400);
+  color: var(--white-200);
+
+}
+
+
+@media screen and (max-width: 700px) {
+  .neighborhood-container {
+
+    grid-template-columns: auto;
+    grid-template-areas:
+      "sidebar"
+      "main-content-neighborhood";
+  }
+
+  .neighborhood-card-list {
+    justify-content: center;
+  }
+
+  .main-content-neighborhood {
+    padding: 0 1.25rem;
+  }
+}
+
+@media screen and (max-width: 520px) {
+  .neighborhood-container {
+    gap: 5px;
+  }
+
+  .form-neighborhood {
+    width: auto;
+  }
+}

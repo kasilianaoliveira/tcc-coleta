@@ -7,6 +7,7 @@ import { Private } from "./private";
 import { CreatePoint } from "../pages/CreatePoint";
 import { Profile } from "../pages/Profile";
 import { EditPoint } from "../pages/EditPoint";
+import { EditInfo } from "../pages/EditInfo";
 
 
 export default function RouterApp() {
@@ -28,11 +29,18 @@ export default function RouterApp() {
           <Profile />
         </Private>} />
 
-        <Route path="/editar-ponto" element={
-          <Private>
-            <EditPoint />
-          </Private>
-        }/>
+      <Route path="/editar-ponto" element={
+        <Private>
+          <EditPoint />
+        </Private>
+      } />
+
+      <Route path="/editar-bairro" element={
+        <Private>
+          <EditInfo />
+        </Private>
+      } />
+
 
     </Routes>
   )
