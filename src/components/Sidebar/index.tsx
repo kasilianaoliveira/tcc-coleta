@@ -1,4 +1,4 @@
-import { useContext, useEffect, useState } from 'react'
+import { useContext, useEffect } from 'react'
 import avatarImg from '../../assets/avatar.png'
 import { Link, useNavigate } from 'react-router-dom'
 
@@ -16,7 +16,6 @@ export default function Sidebar() {
   const { pointList, getPoint, reLoaded, pointNotFound } = useContext(PointContext);
   const navigate = useNavigate();
 
-  console.log(pointNotFound)
   const handleLogout = () => {
     logout();
     navigate('/')

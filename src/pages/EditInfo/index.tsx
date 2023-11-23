@@ -3,22 +3,16 @@ import Sidebar from '../../components/Sidebar';
 import Title from '../../components/Title';
 import { FormEvent, useContext, useEffect, useState } from 'react';
 import { ToastContainer, toast } from 'react-toastify';
-
 import { TbHomeEdit } from "react-icons/tb";
-
-
 import './style.css'
-import { CustomButton } from '../../components/CustomButton/index';
 
 import { Loading } from '../../components/Loading';
-import { useNavigate } from 'react-router-dom';
-import { FaEdit } from "react-icons/fa";
 import { MdDelete } from "react-icons/md";
-import { FiEdit2, FiSearch } from 'react-icons/fi';
+import { FiEdit2 } from 'react-icons/fi';
 import { Modal } from '../../components/Modal';
 import { api } from '../../services/apiClient';
 import { PointContext } from '../../contexts/PointContext';
-import { Neighborhood, NeighborhoodResponse } from '../../types/types';
+import { NeighborhoodResponse } from '../../types/types';
 import { jwtDecode } from 'jwt-decode';
 import Cookies from 'js-cookie';
 import { AxiosError } from 'axios';

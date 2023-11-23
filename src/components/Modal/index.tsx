@@ -3,14 +3,12 @@ import { FiX } from 'react-icons/fi'
 import './style.css';
 import { CustomButton } from '../CustomButton/index';
 import { toast } from 'react-toastify';
-import { Neighborhood, NeighborhoodResponse } from '../../types/types';
+import {  NeighborhoodResponse } from '../../types/types';
 import { FormEvent, useState } from 'react';
 import { api } from '../../services/apiClient';
 import { useJsApiLoader } from '@react-google-maps/api';
 import { getRandomOffset } from '../../utils/getRadom';
 import { constants } from '../../utils/constants';
-import { SiAddthis } from "react-icons/si";
-import { useNavigate } from 'react-router-dom';
 
 interface Props {
   content: NeighborhoodResponse;
@@ -21,8 +19,6 @@ interface Props {
 
 
 export function Modal({ content, close, city, setShowPostModal }: Props) {
-
-  const navigate = useNavigate();
 
   useJsApiLoader({
     id: 'google-map-script',
