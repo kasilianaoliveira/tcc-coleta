@@ -7,7 +7,7 @@ export function setupAPIClient() {
   const token = Cookies.get('auth.token');
 
   const api = axios.create({
-    baseURL: "http://localhost:3333",
+    baseURL: "https://tccbackend-api.onrender.com",
     headers: {
       Authorization: `Bearer ${token}`
     }
