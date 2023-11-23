@@ -58,7 +58,7 @@ export const UserRegister = () => {
      await api.post('/users', data)
 
      toast.success('Cadastro concluido com sucesso, faça login e cadastre seu ponto de coleta!', {
-      position: "bottom-right",
+      position: "top-right",
       autoClose: 5000,
       theme: "light",
     });

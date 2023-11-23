@@ -172,7 +172,7 @@ export const CreatePoint = () => {
             setNeighborhoodSelected(true);
 
             toast.success('Dados adicionados com sucesso', {
-              position: "bottom-right",
+              position: "top-right",
               autoClose: 2000,
               hideProgressBar: false,
               closeOnClick: true,
@@ -464,7 +464,7 @@ export const CreatePoint = () => {
                                     </strong>
 
                                     <p> Dias da semana: {neighborhood.daysOfWeek.join(', ')}</p>
-                                    <p>  Rua: {neighborhood.street}</p>
+                                    {user.role === 'COLLECTION_COMPANY' && <p>  Rua: {neighborhood.street}</p>}
 
                                     <BiSolidTrashAlt size={25} className="remove-task-button"
                                       onClick={() => handleRemoveNeighborhood(neighborhood.name)} />
@@ -478,7 +478,7 @@ export const CreatePoint = () => {
                     </div>
 
                   </div>
-                  {!selectedNeighborhood && <span className='create-point-steps'>É necessário escolher seu Estado e Cidade para adcionar o bairro</span>}
+                  {!selectedNeighborhood && <span className='create-point-steps'>É necessário escolher seu Estado e Cidade para adicionar o bairro</span>}
                 </fieldset>
               </>
             )

@@ -19,6 +19,7 @@
 }
 
 .dropzone p {
+  text-align: center;
   width: calc(100% - 60px);
   height: calc(100% - 60px);
   border-radius: 10px;

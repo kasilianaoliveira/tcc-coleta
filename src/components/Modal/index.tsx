@@ -79,7 +79,7 @@ export function Modal({ content, close, city, setShowPostModal }: Props) {
           }));
           setUpdatedNeighborhood(true);
           toast.success('Bairro alterado com sucesso', {
-            position: "bottom-right",
+            position: "top-right",
             autoClose: 2000,
             theme: "light",
           });
@@ -111,7 +111,7 @@ export function Modal({ content, close, city, setShowPostModal }: Props) {
 
       await api.put(`/neighborhood/${neighborhoodInfo.id}`, neighborhoodInfo);
       toast.success('Dado(s) atualizado(s) com sucesso!', {
-        position: "bottom-right",
+        position: "top-right",
         autoClose: 2000,
         theme: "light",
       });

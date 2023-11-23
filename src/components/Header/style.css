@@ -1,4 +1,4 @@
-.header{
+.header {
   max-width: 1200px;
   padding: 0 20px;
   margin: 0 auto;
@@ -8,7 +8,7 @@
 }
 
 .menu ul {
-  font-family:'Roboto', sans-serif;
+  font-family: 'Roboto', sans-serif;
   display: flex;
   gap: .9375rem;
 }
@@ -17,4 +17,16 @@
   cursor: pointer;
   text-decoration: underline;
   text-underline-offset: 6px;
+}
+
+
+@media screen and (max-width: 500px) {
+  .header {
+    flex-direction: column;
+  }
+
+  .header img {
+    height: 150px;
+    width: 150px;
+  }
 }

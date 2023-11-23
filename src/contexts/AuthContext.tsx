@@ -95,7 +95,7 @@ export const AuthProvider: FC<AuthProviderProps> = ({ children }) => {
 
 
         toast.success('Cadastro concluido com sucesso, acesse Meu painel e acesse suas informações.', {
-          position: "bottom-right",
+          position: "top-right",
           autoClose: 3000,
           theme: "light",
         });
@@ -116,7 +116,7 @@ export const AuthProvider: FC<AuthProviderProps> = ({ children }) => {
         const data = response.data
         setUser(data.update)
         toast.success('Dado(s) atualizados com sucesso!', {
-          position: "bottom-right",
+          position: "top-right",
           autoClose: 3000,
           theme: "light",
         });

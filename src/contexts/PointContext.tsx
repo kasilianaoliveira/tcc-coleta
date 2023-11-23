@@ -35,7 +35,7 @@ export const PointProvider: FC<PointProviderProps> = ({ children }) => {
     try {
       await api.post('/point', data);
       toast.success('Cadastro concluido com sucesso, acesse Meu painel e acesse suas informações.', {
-        position: "bottom-right",
+        position: "top-right",
         autoClose: 3000,
         theme: "light",
       });
@@ -113,7 +113,7 @@ export const PointProvider: FC<PointProviderProps> = ({ children }) => {
         });
         setPointList(response.data)
         toast.success('Dado(s) atualizados com sucesso!', {
-          position: "bottom-right",
+          position: "top-right",
           autoClose: 3000,
           theme: "light",
         });
