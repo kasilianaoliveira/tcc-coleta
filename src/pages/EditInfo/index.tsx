@@ -17,10 +17,6 @@ import { jwtDecode } from 'jwt-decode';
 import Cookies from 'js-cookie';
 import { AxiosError } from 'axios';
 
-interface HTMLInputEvent extends FormEvent {
-  target: HTMLInputElement & EventTarget;
-}
-
 export const EditInfo = () => {
   const { pointList, getPoint } = useContext(PointContext);
   const [showPostModal, setShowPostModal] = useState(false);
