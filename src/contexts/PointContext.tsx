@@ -50,9 +50,12 @@ export const PointProvider: FC<PointProviderProps> = ({ children }) => {
         const error = err.response?.data.error
         console.log(error)
         if (error === 'Error: Email already exists') {
-          toast.error('Email já existente, tente outro!');
+          toast.error('Email já existente, tente outro.');
         } else if (error === 'Error: User already has a point registered') {
-          toast.error('Vocë já tem um ponto cadastrado!');
+          toast.error('Vocë já tem um ponto cadastrado.');
+        }else if (error === 'Error: Whatsapp already has a point registered'){
+          toast.error('Whatsapp já cadastrado em nosso sistema.');
+
         }
       } else {
         toast.error('Erro ao cadastrar dados, tente novamente mais tarde');

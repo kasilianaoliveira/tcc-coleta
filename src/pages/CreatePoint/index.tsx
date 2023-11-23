@@ -1,7 +1,7 @@
 import { FormEvent, useContext, useEffect, useState } from 'react';
 import { useJsApiLoader } from '@react-google-maps/api';
 import { ToastContainer, toast } from 'react-toastify';
-import { Link, useNavigate } from "react-router-dom";
+import { Link,  useNavigate } from "react-router-dom";
 import * as yup from "yup";
 import "react-toastify/dist/ReactToastify.css";
 import { api } from '../../services/apiClient';
@@ -72,7 +72,7 @@ export const CreatePoint = () => {
     city: yup.string().required('Cidade é um campo obrigatório'),
     neighborhood: yup.object().shape({
       name: yup.string().required('Nome do bairro é um campo obrigatório'),
-      street: yup.string().required('Rua do endereço é um campo obrigatório'),
+      street: yup.string().nullable()
     }),
   })
 

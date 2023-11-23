@@ -16,9 +16,11 @@ import { NeighborhoodResponse } from '../../types/types';
 import { jwtDecode } from 'jwt-decode';
 import Cookies from 'js-cookie';
 import { AxiosError } from 'axios';
+import { AuthContext } from '../../contexts/AuthContext';
 
 export const EditInfo = () => {
   const { pointList, getPoint } = useContext(PointContext);
+  const { user} = useContext(AuthContext);
   const [showPostModal, setShowPostModal] = useState(false);
   const [neighborhood, setNeighborhood] = useState<NeighborhoodResponse[]>([]);
   const [detail, setDetail] = useState<NeighborhoodResponse>()
@@ -90,7 +92,7 @@ export const EditInfo = () => {
                 <table>
                   <thead>
                     <tr>
-                      <th scope="col">Rua</th>
+                     {user && user.role === 'COLLECTION_COMPANY' && <th scope="col">Rua</th>} 
                       <th scope="col">Bairro</th>
                       <th scope="col">Dias da semana</th>
                       <th scope="col">#</th>
@@ -101,7 +103,7 @@ export const EditInfo = () => {
                       neighborhood && neighborhood.map((item, index) => {
                         return (
                           <tr key={index}>
-                            <td data-label="Rua">{item.street}</td>
+                             {user && user.role === 'COLLECTION_COMPANY' && <td data-label="Rua">{item.street}</td>}      
                             <td data-label="Bairro">{item.name}</td>
                             <td data-label="Dias da semana">
                               <span className="badge" style={{ backgroundColor: '#999' }}>

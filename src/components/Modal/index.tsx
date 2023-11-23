@@ -3,12 +3,13 @@ import { FiX } from 'react-icons/fi'
 import './style.css';
 import { CustomButton } from '../CustomButton/index';
 import { toast } from 'react-toastify';
-import {  NeighborhoodResponse } from '../../types/types';
-import { FormEvent, useState } from 'react';
+import { NeighborhoodResponse } from '../../types/types';
+import { FormEvent, useContext, useState } from 'react';
 import { api } from '../../services/apiClient';
 import { useJsApiLoader } from '@react-google-maps/api';
 import { getRandomOffset } from '../../utils/getRadom';
 import { constants } from '../../utils/constants';
+import { AuthContext } from '../../contexts/AuthContext';
 
 interface Props {
   content: NeighborhoodResponse;
@@ -19,6 +20,9 @@ interface Props {
 
 
 export function Modal({ content, close, city, setShowPostModal }: Props) {
+
+  const { user } = useContext(AuthContext);
+
 
   useJsApiLoader({
     id: 'google-map-script',
@@ -79,7 +83,7 @@ export function Modal({ content, close, city, setShowPostModal }: Props) {
             autoClose: 2000,
             theme: "light",
           });
-    
+
         } else {
           console.error('Erro ao obter latitude e longitude:', status);
         }
@@ -131,14 +135,19 @@ export function Modal({ content, close, city, setShowPostModal }: Props) {
 
           <form className="form-neighborhood">
             <div className="neighborhood-info">
-              <div>
-                <label>Rua</label>
-                <input
-                  type="text"
-                  value={neighborhoodInfo.street}
-                  onChange={(e) => handleChange('street', e.target.value)}
-                />
-              </div>
+
+              {
+                user && user.role === 'COLLECTION_COMPANY' && (
+                  <div>
+                    <label>Rua</label>
+                    <input
+                      type="text"
+                      value={neighborhoodInfo.street}
+                      onChange={(e) => handleChange('street', e.target.value)}
+                    />
+                  </div>
+                )
+              }
 
               <div className='button-add-neighborhood'>
                 <div>
@@ -177,17 +186,17 @@ export function Modal({ content, close, city, setShowPostModal }: Props) {
 
             {
               updatedNeighborhood && newNeighborhood &&
-               ( <CustomButton type="submit" onClick={handleSaveNeighborhood}>
-                  Salvar
-                </CustomButton>)
-              
+              (<CustomButton type="submit" onClick={handleSaveNeighborhood}>
+                Salvar
+              </CustomButton>)
+
             }
-              {
-              !updatedNeighborhood &&  !newNeighborhood &&
-               ( <CustomButton type="submit" onClick={handleSaveNeighborhood}>
-                  Salvar
-                </CustomButton>)
-              
+            {
+              !updatedNeighborhood && !newNeighborhood &&
+              (<CustomButton type="submit" onClick={handleSaveNeighborhood}>
+                Salvar
+              </CustomButton>)
+
             }
 
           </form>
