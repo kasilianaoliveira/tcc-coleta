@@ -100,7 +100,6 @@ export const UserRegister = () => {
         </Link>
       </Header>
       <div id="page-create-user">
-
         <form onSubmit={handleSubmit(onSubmit)}>
           <h1>Olá, iniciaremos seu cadastro</h1>
           <p>Vamos precisar de algumas informações pessoais <br />
