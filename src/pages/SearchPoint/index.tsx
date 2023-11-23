@@ -119,7 +119,6 @@ export const SearchPoints = () => {
     }
   };
 
-
   const searchRecyclingCenters = async () => {
 
     try {
@@ -138,6 +137,16 @@ export const SearchPoints = () => {
     } catch (error) {
       console.error('Erro na pesquisa de centros de reciclagem:', error);
     }
+  };
+
+  const handleEmailClick = (email:string) => {
+    window.location.href = `mailto:${email}`;
+  };
+  
+  const handleWhatsappClick = (phoneNumber:string) => {
+   
+    const phone = phoneNumber.replace(/[^\d]/g, '');
+    window.location.href = `https://wa.me/${phone}`;
   };
 
   const handleMarkerClick = (point: DataResponse) => {
@@ -303,11 +312,11 @@ export const SearchPoints = () => {
                   </div>
 
                   <div className='contact-buttons'>
-                    <CustomButton>
+                    <CustomButton onClick={()=> handleEmailClick(selectedPointServer.email)}>
                       <AiOutlineMail size={20} />
                       Email
                     </CustomButton>
-                    <CustomButton>
+                    <CustomButton onClick={() => handleWhatsappClick(selectedPointServer.whatsapp)}>
                       <BsWhatsapp size={20} />
                       Whatsapp
                     </CustomButton>

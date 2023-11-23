@@ -23,6 +23,7 @@ import ReactInputMask from 'react-input-mask';
 import { AuthContext } from '../../contexts/AuthContext';
 import { PointContext } from '../../contexts/PointContext';
 import Dropzone from '../../components/Dropzone';
+import { getRandomOffset } from '../../utils/getRadom';
 
 
 interface Item {
@@ -96,7 +97,6 @@ export const CreatePoint = () => {
     uf === selectedUF ? setSelectedUF('') : setSelectedUF(uf);
   };
 
-  console.log(user.role)
   const handleSelectDay = (id: string) => {
     if (!selectedCity) {
       toast.error('Selecione um Estado e Cidade antes de escolher os dias da semana.', {
@@ -127,10 +127,7 @@ export const CreatePoint = () => {
       })
   }, []);
 
-  function getRandomOffset() {
 
-    return (Math.random() - 0.5) / 150;
-  }
 
   const addNeighborhood = (event: FormEvent) => {
     event.preventDefault();
@@ -339,7 +336,6 @@ export const CreatePoint = () => {
                     <div className="field">
                       <label htmlFor="whatsapp">Whatsapp*</label>
                       <ReactInputMask
-                        // mask options
                         mask={"(99) 99999-9999"}
                         alwaysShowMask={false}
                         maskPlaceholder=''
