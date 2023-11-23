@@ -7,25 +7,18 @@ export interface IBGECityResponse {
   nome: string;
 }
 
-
-export interface PointOfCollection {
-  name: string;
-  image?: string;
-  email: string;
-  whatsapp: string;
-  latitude: number;
-  longitude: number;
-  city: string;
-  uf: string;
-  userId?: string;
-  items?: string[];
-  neighborhoods?: Neighborhood[];
-}
-
 export interface Item {
   id: string;
   title: string;
   image: string;
+}
+export interface NeighborhoodResponse {
+  id:string;
+  name: string;
+  latitude: number;
+  longitude: number;
+  street?: string;
+  daysOfWeek: string[];
 }
 
 export interface Neighborhood {
@@ -53,16 +46,4 @@ export interface IPoint {
   userId:string;
   neighborhoods: Neighborhood[];
   pointItems: PointItem[]
-}
-
-
-export interface NeighborhoodsLocation {
-  latWithOffset: number;
-  lngWithOffset: number;
-  id: string;
-  name: string;
-  latitude: number;
-  longitude: number;
-  daysOfWeek: string[];
-  pointId: string;
 }

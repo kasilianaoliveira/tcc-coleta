@@ -19,6 +19,7 @@ import { Loading } from '../../components/Loading';
 import { useNavigate } from 'react-router-dom';
 import { jwtDecode } from 'jwt-decode';
 import Cookies from 'js-cookie';
+import ReactInputMask from 'react-input-mask';
 
 interface HTMLInputEvent extends FormEvent {
   target: HTMLInputElement & EventTarget;
@@ -95,7 +96,6 @@ export const EditPoint = () => {
       point.append('city', pointInfo.city)
       point.append('uf', pointInfo.uf)
 
-      // console.log('Point Data:', point);
       if (imageAvatar) {
         point.append('image', imageAvatar)
       }
@@ -157,13 +157,19 @@ export const EditPoint = () => {
 
                     <div>
                       <label>Whatsapp</label>
-                      <input
+                      <ReactInputMask
+                        mask={"(99) 99999-9999"}
+                        alwaysShowMask={false}
+                        maskPlaceholder=''
                         type="text"
+                        id="whatsapp"
+                        placeholder='(00) 90000-0000'
                         value={pointInfo.whatsapp}
                         disabled={!isActive}
                         onChange={(e) =>
                           setPointInfo({ ...pointInfo, whatsapp: e.target.value })}
                       />
+
                     </div>
                     <div>
                       <label>Estado (UF)</label>
