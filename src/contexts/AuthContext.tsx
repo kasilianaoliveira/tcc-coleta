@@ -69,8 +69,16 @@ export const AuthProvider: FC<AuthProviderProps> = ({ children }) => {
         api.defaults.headers['Authorization'] = `Bearer ${token}`
 
       }
-    } catch (error) {
-      console.log('Erro ao acessar o site', error)
+    } catch (err) {
+      if (err instanceof AxiosError) {
+        const error = err.response?.data.error
+        console.log(error)
+        if (error === 'User/password incorrect') {
+          toast.error('Email ou senha incorreto');
+        }
+      } else {
+        toast.error('Erro ao tentar fazer login, tente novamente mais tarde');
+      }
     }
   }
 
