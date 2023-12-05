@@ -1,4 +1,4 @@
-import { useState, ChangeEvent, useEffect } from 'react';
+import { useState, ChangeEvent, useEffect, FormEvent } from 'react';
 import { Header } from '../../components/Header';
 import useUfs from '../../hooks/useUfs';
 import useCities from '../../hooks/useCities';
@@ -52,6 +52,8 @@ export const SearchPoints = () => {
   const [isClickOnPoint, setIsClickOnPoint] = useState(false);
   const [mapCenter, setMapCenter] = useState({ lat: 0, lng: 0 });
   const [selectedFilterRole, setSelectedFilterRole] = useState("ALL");
+  const [isPointService, setIsPointService] = useState(false);
+
   function handleSelectUf(event: ChangeEvent<HTMLSelectElement>) {
     const uf = event.target.value;
 
@@ -162,8 +164,14 @@ export const SearchPoints = () => {
     setIsClickOnPoint(true);
   };
 
-  const handleSelectRole = (event) => {
-    setSelectedFilterRole(event.target.value);
+  const handleSelectRole = (event: React.ChangeEvent<HTMLSelectElement>) => {
+    event.preventDefault();
+    const role = event.target.value
+    setSelectedFilterRole(role);
+
+    if(role !== "ALL"){
+      setIsPointService(true)
+    }
   };
 
 
@@ -253,7 +261,7 @@ export const SearchPoints = () => {
 
               ))}
 
-              {recyclingPoints.map((item) => (
+              {isPointService && recyclingPoints.map((item) => (
                 <Marker
                   key={item.place_id}
                   position={{ lat: item.geometry.location.lat, lng: item.geometry.location.lng }}
