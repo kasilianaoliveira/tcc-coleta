@@ -99,6 +99,8 @@ export const SearchPoints = () => {
 
     }
   }
+
+  console.log(selectedPointServer.image)
   const handleCitySelection = async () => {
     try {
       const geocoder = new google.maps.Geocoder();
@@ -261,7 +263,7 @@ export const SearchPoints = () => {
 
               ))}
 
-              {isPointService && recyclingPoints.map((item) => (
+              {!isPointService && recyclingPoints.map((item) => (
                 <Marker
                   key={item.place_id}
                   position={{ lat: item.geometry.location.lat, lng: item.geometry.location.lng }}
@@ -306,7 +308,7 @@ export const SearchPoints = () => {
             isClickOnPoint && (
               <div className="card-point-info">
                 {
-                  selectedPointServer.image !== 'http://localhost:3333/uploads/null' ? <img src={selectedPointServer.image} alt="" /> : <img src={PerfilGoogleImg} alt="" />
+                  selectedPointServer.image && selectedPointServer.image !== 'https://tccbackend-api.onrender.com/uploads/null' ? <img src={selectedPointServer.image} alt="" /> : <img src={PerfilGoogleImg} alt="" />
                 }
 
                 <div>
