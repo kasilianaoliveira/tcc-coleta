@@ -100,7 +100,6 @@ export const SearchPoints = () => {
     }
   }
 
-  console.log(selectedPointServer.image)
   const handleCitySelection = async () => {
     try {
       const geocoder = new google.maps.Geocoder();
@@ -137,6 +136,7 @@ export const SearchPoints = () => {
       const data = response.data;
       if (data) {
         setRecyclingPoints(data);
+    
       }
 
     } catch (error) {
@@ -171,9 +171,8 @@ export const SearchPoints = () => {
     const role = event.target.value
     setSelectedFilterRole(role);
 
-    if(role !== "ALL"){
-      setIsPointService(true)
-    }
+    role !== "ALL" ? setIsPointService(true) : setIsPointService(false);
+    
   };
 
 
