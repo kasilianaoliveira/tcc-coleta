@@ -51,7 +51,7 @@ export const SearchPoints = () => {
   const [selectedPointServer, setSelectedPointServer] = useState<Point>({} as Point);
   const [isClickOnPoint, setIsClickOnPoint] = useState(false);
   const [mapCenter, setMapCenter] = useState({ lat: 0, lng: 0 });
-
+  const [selectedFilterRole, setSelectedFilterRole] = useState("ALL");
   function handleSelectUf(event: ChangeEvent<HTMLSelectElement>) {
     const uf = event.target.value;
 
@@ -87,6 +87,7 @@ export const SearchPoints = () => {
         params: {
           uf: selectedUf,
           city: selectedCity,
+          filterRole: selectedFilterRole
         },
       });
       setPoints(response.data)
@@ -139,12 +140,12 @@ export const SearchPoints = () => {
     }
   };
 
-  const handleEmailClick = (email:string) => {
+  const handleEmailClick = (email: string) => {
     window.location.href = `mailto:${email}`;
   };
-  
-  const handleWhatsappClick = (phoneNumber:string) => {
-   
+
+  const handleWhatsappClick = (phoneNumber: string) => {
+
     const phone = phoneNumber.replace(/[^\d]/g, '');
     window.location.href = `https://wa.me/${phone}`;
   };
@@ -159,6 +160,10 @@ export const SearchPoints = () => {
     setSelectedPointServer(point);
     setListNeighborhood(neighborhood);
     setIsClickOnPoint(true);
+  };
+
+  const handleSelectRole = (event) => {
+    setSelectedFilterRole(event.target.value);
   };
 
 
@@ -196,6 +201,20 @@ export const SearchPoints = () => {
             </select>
 
           </div>
+          <div className="search-field">
+            <label htmlFor="city">Filtre sua busca</label>
+            <select
+              name="role"
+              id="role"
+              value={selectedFilterRole}
+              onChange={handleSelectRole}
+            >
+              <option value="ALL">Todos (incluindo empresas do Google Maps)</option>
+              <option value="GARBAGE_COLLECTOR">Catador</option>
+              <option value="COLLECTION_COMPANY">Empresa de coleta</option>
+
+            </select>
+          </div>
         </div>
         <CustomButton onClick={handleSearchPoint}>
           <BiSearch size={18} />
@@ -226,9 +245,9 @@ export const SearchPoints = () => {
                     key={`${point.id}-${neighborhood.id}- ${point.userId}`}
                     position={{ lat: neighborhood.latitude, lng: neighborhood.longitude }}
                     onClick={() => handleMarkerClickPoint(point, neighborhood)}
-                    // icon={
+                  // icon={
 
-                    // }
+                  // }
                   />
                 ))
 
@@ -279,9 +298,9 @@ export const SearchPoints = () => {
             isClickOnPoint && (
               <div className="card-point-info">
                 {
-                  selectedPointServer.image !== 'http://localhost:3333/uploads/null' ?     <img src={selectedPointServer.image} alt="" /> :    <img src={PerfilGoogleImg} alt="" />
+                  selectedPointServer.image !== 'http://localhost:3333/uploads/null' ? <img src={selectedPointServer.image} alt="" /> : <img src={PerfilGoogleImg} alt="" />
                 }
-             
+
                 <div>
                   <h1>{selectedPointServer.name}</h1>
                   <h4 className='card-description'>
@@ -292,27 +311,27 @@ export const SearchPoints = () => {
                   <div className='list-neighborhood'>
                     {/* {
                       selectedPointServer?.neighborhoods?.map((neighborhood) => ( */}
-                        <div className='card-address'>
-                          <div>
-                            <h5>Endereço</h5>
-                            <p>
-                              {selectedCity} - {selectedUf}
-                            </p>
-                            <p> {listNeighborhood?.name}</p>
-                          </div>
-                          <div>
-                            <h5>Dias da semana</h5>
-                            <p>
-                              {listNeighborhood?.daysOfWeek.join(', ')}
-                            </p>
-                          </div>
-                        </div>
-                      {/* ))
+                    <div className='card-address'>
+                      <div>
+                        <h5>Endereço</h5>
+                        <p>
+                          {selectedCity} - {selectedUf}
+                        </p>
+                        <p> {listNeighborhood?.name}</p>
+                      </div>
+                      <div>
+                        <h5>Dias da semana</h5>
+                        <p>
+                          {listNeighborhood?.daysOfWeek.join(', ')}
+                        </p>
+                      </div>
+                    </div>
+                    {/* ))
                     } */}
                   </div>
 
                   <div className='contact-buttons'>
-                    <CustomButton onClick={()=> handleEmailClick(selectedPointServer.email)}>
+                    <CustomButton onClick={() => handleEmailClick(selectedPointServer.email)}>
                       <AiOutlineMail size={20} />
                       Email
                     </CustomButton>
