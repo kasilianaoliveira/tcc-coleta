@@ -1,4 +1,4 @@
-import { useState, ChangeEvent, useEffect, FormEvent } from 'react';
+import { useState, ChangeEvent, useEffect } from 'react';
 import { Header } from '../../components/Header';
 import useUfs from '../../hooks/useUfs';
 import useCities from '../../hooks/useCities';
