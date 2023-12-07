@@ -52,7 +52,7 @@ export const SearchPoints = () => {
   const [isClickOnPoint, setIsClickOnPoint] = useState(false);
   const [mapCenter, setMapCenter] = useState({ lat: 0, lng: 0 });
   const [selectedFilterRole, setSelectedFilterRole] = useState("ALL");
-  const [isPointService, setIsPointService] = useState(false);
+  const [isPointService, setIsPointService] = useState<boolean>();
 
   function handleSelectUf(event: ChangeEvent<HTMLSelectElement>) {
     const uf = event.target.value;
@@ -85,6 +85,7 @@ export const SearchPoints = () => {
 
   async function handleSearchPoint() {
     try {
+
       const response = await api.get('/pointFilter', {
         params: {
           uf: selectedUf,
@@ -93,6 +94,11 @@ export const SearchPoints = () => {
         },
       });
       setPoints(response.data)
+
+      if (selectedFilterRole === 'ALL') {
+        setIsPointService(false);
+      }
+
       searchRecyclingCenters()
       handleCitySelection()
     } catch (error) {
@@ -136,7 +142,7 @@ export const SearchPoints = () => {
       const data = response.data;
       if (data) {
         setRecyclingPoints(data);
-    
+
       }
 
     } catch (error) {
@@ -171,9 +177,13 @@ export const SearchPoints = () => {
     const role = event.target.value
     setSelectedFilterRole(role);
 
-    role !== "ALL" ? setIsPointService(true) : setIsPointService(false);
-    
+    if (role !== "ALL") {
+      setIsPointService(true)
+    }
+
   };
+
+  console.log(points)
 
 
   return (
@@ -254,9 +264,6 @@ export const SearchPoints = () => {
                     key={`${point.id}-${neighborhood.id}- ${point.userId}`}
                     position={{ lat: neighborhood.latitude, lng: neighborhood.longitude }}
                     onClick={() => handleMarkerClickPoint(point, neighborhood)}
-                  // icon={
-
-                  // }
                   />
                 ))
 
@@ -326,6 +333,7 @@ export const SearchPoints = () => {
                         <p>
                           {selectedCity} - {selectedUf}
                         </p>
+                        {listNeighborhood?.street!== undefined && <p> {listNeighborhood.street}</p>}
                         <p> {listNeighborhood?.name}</p>
                       </div>
                       <div>
