@@ -3,6 +3,7 @@ interface Neighborhood {
   name: string;
   latitude: number;
   longitude: number;
+  street?: string;
   daysOfWeek: string[];
   pointId: string;
 }
