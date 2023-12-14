@@ -7,7 +7,7 @@ A motivação central para a criação desse projeto surgiu da constatação, a 
 
 O projeto está dividido em duas partes: o frontend e o backend. Caso tenha interesse em acessar o código de ambas as partes, fique à vontade. No entanto, se desejar apenas visualizar o site e ver como está atualmente, você pode clicar neste link.
 
-Currently, two official plugins are available:
+Link para o backend: https://github.com/kasilianaoliveira/tcc-backend
 
 ## Tecnologias usadas
 
